@@ -1,0 +1,39 @@
+<li class="text-left ingridient" *appDelay="index">
+  <ng-container *ngIf="!isEdit">
+    <p>{{ingridient.name}}</p>
+
+    <a href="#" (click)="$event.preventDefault();onEdit()">
+      <i class="fas fa-marker"></i>
+    </a>
+
+    <a href="#" (click)="$event.preventDefault();delete(ingridient._id)">
+      <i class="fas fa-trash-alt"></i>
+    </a>
+
+
+  </ng-container>
+
+  <ng-container *ngIf="isEdit">
+    <textarea [(ngModel)]="ingridient.name" class="form-control"></textarea>
+
+
+    <a href="#" (click)="$event.preventDefault();save()">
+      <i class="fas fa-check"></i>
+    </a>
+
+    <a href="#" (click)="$event.preventDefault();onCancel()">
+      <i class="fas fa-times text-danger"></i>
+    </a>
+  </ng-container>
+
+</li>
+
+
+
+
+
+
+
+
+
+

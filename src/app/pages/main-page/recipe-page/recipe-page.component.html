@@ -1,0 +1,14 @@
+<h1 class="text-center">Recipes</h1>
+
+
+
+<div *ngIf="recipe$ | async as recipes ; else loader" class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let recipe of recipes;let i = index">
+      <app-recipe-card [recipe]="recipe" [index]="i"></app-recipe-card>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

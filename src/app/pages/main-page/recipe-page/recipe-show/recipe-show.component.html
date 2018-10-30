@@ -1,0 +1,71 @@
+<div *ngIf="recipe;else loader" class="container">
+  <div class="text-center">
+    <h2>
+      <a routerLink="/recipe">Recipes</a>
+      <ng-container *ngIf="!isEditTitle">
+        <a> >{{recipe.title}}</a>
+        <a href="#" (click)="$event.preventDefault();onEditTitle()">
+          <i class="fas fa-marker"></i>
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="isEditTitle">
+        <textarea [(ngModel)]="recipe.title" class="form-control"></textarea>
+
+        <a href="#" (click)="$event.preventDefault();onSaveTitle()">
+          <i class="fas fa-check"></i>
+        </a>
+
+        <a href="#" (click)="$event.preventDefault();onCancelTitle()">
+          <i class="fas fa-times text-danger"></i>
+        </a>
+
+
+      </ng-container>
+    </h2>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <app-recipe-card [recipe]="recipe" [index]="1"></app-recipe-card>
+    </div>
+    <div class="col-8 text-center">
+      <h3 class=" card-header">{{recipe.description}}</h3>
+      <h5>Ingridients</h5>
+
+      <ul *ngIf="recipe.ingridients.length>0;else emptyInst">
+        <ng-container *ngFor="let ing of recipe.ingridients;let i = index">
+          <app-ingridient [index]="i" [ingridient]="ing" (deleteIng)="onDeleteIng($event)"></app-ingridient>
+        </ng-container>
+      </ul>
+
+      <div *ngIf="isAdd"
+           class="form-group">
+        <textarea class="form-control" [(ngModel)]="newIngridient"></textarea>
+        <button (click)="onSave()" [disabled]="!newIngridient">save</button>
+        <button (click)="isAdd=false">cancel</button>
+      </div>
+      <button (click)="isAdd = true"
+              *ngIf="!isAdd"
+      >add
+      </button>
+      <h5>Instruction
+        <a href="#" (click)="$event.preventDefault()">
+          <i class="fas fa-marker"></i>
+        </a>
+      </h5>
+      <p>{{recipe.instructions}} </p>
+      <p *ngIf="category">
+        <strong>Category</strong> > <a>{{category.name}}</a>
+      </p>
+      <ng-template #emptyInst>
+        <h6>not fount...</h6>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+

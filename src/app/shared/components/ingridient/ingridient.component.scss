@@ -1,0 +1,17 @@
+.ingridient {
+  animation: showIgr .4s linear;
+  padding: 5px;
+  border-bottom: 1px springgreen solid;
+}
+
+@keyframes showIgr {
+  from {
+    opacity: .7;
+    transform: translate(-10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand"
+     routerLink="/recipe"
+  >Recipes</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+
+      <a class="nav-item nav-link"
+         routerLink="/recipe"
+         routerLinkActive="active"
+      >Recipe</a>
+
+      <a class="nav-item nav-link"
+         routerLink="/favorite"
+         routerLinkActive="active"
+      >Favorite</a>
+
+
+      <ng-container *ngIf="!isAuth">
+        <a class="nav-item nav-link"
+           routerLink="/auth/login"
+           routerLinkActive="active"
+        >Login</a>
+
+        <a class="nav-item nav-link"
+           routerLink="/auth/register"
+           routerLinkActive="active"
+        >Register</a>
+      </ng-container>
+
+      <div class="btn-group" dropdown *ngIf="isAuth">
+        <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="dropdown-basic">
+          user <span class="caret"></span>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-basic">
+          <!--<li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>-->
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem">
+            <a class="dropdown-item"
+               (click)="$event.preventDefault();onLogOut()"
+            >logOut</a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</nav>

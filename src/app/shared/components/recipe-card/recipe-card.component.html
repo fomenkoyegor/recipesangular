@@ -1,0 +1,27 @@
+<div class="card" style="width: 18rem;" *appDelay="index">
+  <img class="card-img-top" src="{{recipe.photoUrl}}" alt="Card image cap"
+       style="height: 150px">
+  <div class="card-body">
+    <h5 class="card-title">{{recipe.title}}</h5>
+    <p class="card-text">{{recipe.description}}</p>
+
+
+    <a routerLink="/recipe/{{recipe._id}}">
+      <i class="fas fa-eye"></i>
+    </a>
+
+    <a href="#" (click)="$event.preventDefault();addToFavorite()" *ngIf="!recipe.favorite">
+      <i class="fas fa-heart text-dark"></i>
+    </a>
+
+    <a href="#" (click)="$event.preventDefault();outFavorite()" *ngIf="recipe.favorite">
+      <i class="fas fa-heart text-danger"></i>
+    </a>
+
+    <a routerLink="/recipe/edit/{{recipe._id}}">
+      <i class="fas fa-pen-square"></i>
+    </a>
+
+
+  </div>
+</div>
